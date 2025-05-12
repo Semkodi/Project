@@ -1,0 +1,10 @@
+[
+    {
+        "username": "Semir",
+        "password_hash": "scrypt:32768:8:1$vFdEytQUiTqt3SF2$dbdb90e5da5f04a15ff9375532a4bc7db6f53ef1608aa5d4c2de54e2a8aa3b2b4a3376854f724616be18d8c14799d70123f4df3da71b81d5e91c000371f684d7"
+    },
+    {
+        "username": "abc",
+        "password_hash": "scrypt:32768:8:1$XMwUePEp02nZembu$3c97457d7e1cf781f37f4a5e704b9843125ed165e137ef88e60a26f527910119e8e2bb39c4c4923e69c3d00467ae1918a40138cd06bed009eeee19ba8e426b07"
+    }
+]

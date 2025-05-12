@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Aufgabenübersicht</title>
+    <!-- Einbinden der CSS-Datei für das Styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+</head>
+<body>
+    <header>
+        <!-- Begrüßung mit Benutzernamen -->
+        <div class="begruessung">Hallo, {{ username }}!</div>
+        <!-- Abmelden-Link oben rechts -->
+        <div class="logout"><a href="{{ url_for('logout') }}">Abmelden</a></div>
+    </header>
+    <main>
+        <!-- Formular zum Hinzufügen einer neuen Aufgabe -->
+        <form action="{{ url_for('add') }}" method="post" class="todo-form">
+            <!-- Aufgabenbeschreibung -->
+            <input type="text" name="task" placeholder="Aufgabe/Beschreibung" required class="glass-input" />
+            <!-- Status-Auswahl -->
+            <select name="status" required class="glass-input">
+                <option value="offen">Offen</option>
+                <option value="in Bearbeitung">In Bearbeitung</option>
+                <option value="erledigt">Erledigt</option>
+                <option value="überfällig">Überfällig</option>
+            </select>
+            <!-- Fälligkeitsdatum -->
+            <input type="date" name="due_date" placeholder="Fälligkeitsdatum" class="glass-input" />
+            <!-- Priorität-Auswahl -->
+            <select name="priority" required class="glass-input">
+                <option value="hoch">Hoch</option>
+                <option value="mittel">Mittel</option>
+                <option value="niedrig">Niedrig</option>
+            </select>
+            <!-- Kategorie -->
+            <input type="text" name="category" placeholder="Kategorie" class="glass-input" />
+            <!-- Verantwortlich -->
+            <input type="text" name="responsible" placeholder="Verantwortlich" class="glass-input" />
+            <!-- Notiz -->
+            <input type="text" name="note" placeholder="Notiz" class="glass-input" />
+            <!-- Button zum Absenden des Formulars -->
+            <button type="submit">Hinzufügen</button>
+        </form>
+
+        <!-- Bereich zur Anzeige der Aufgabenliste -->
+        <div class="todo-list">
+            {% if todos %}
+                <!-- Schleife über alle Aufgaben -->
+                {% for todo in todos %}
+                    <div class="todo-card">
+                        <div class="todo-header">
+                            <!-- Titel der Aufgabe -->
+                            <span class="todo-title">{{ todo.task }}</span>
+                            <!-- Formular zum Löschen der Aufgabe -->
+                            <form action="{{ url_for('delete', task_id=todo.id) }}" method="post" class="delete-form">
+                                <button type="submit" class="delete-btn" title="Löschen">🗑</button>
+                            </form>
+                        </div>
+                        <div class="todo-details">
+                            <div><strong>Status:</strong> {{ todo.status }}</div>
+                            <div><strong>Fällig bis:</strong> {{ todo.due_date }}</div>
+                            <div><strong>Priorität:</strong> {{ todo.priority }}</div>
+                            <div><strong>Kategorie:</strong> {{ todo.category }}</div>
+                            <!-- Verantwortlich (hier war "Verwendung", das ist vermutlich ein Tippfehler) -->
+                            <div><strong>Verantwortlich:</strong> {{ todo.responsible }}</div>
+                            <div><strong>Notiz:</strong> {{ todo.note }}</div>
+                        </div>
+                        <div class="todo-actions">
+                            <!-- Link zum Bearbeiten der Aufgabe -->
+                            <a href="{{ url_for('edit', task_id=todo.id) }}">
+                                <button type="button" class="edit-btn">Bearbeiten</button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <!-- Nachricht, wenn keine Aufgaben vorhanden sind -->
+                <div class="no-todos">Keine Aufgaben vorhanden.</div>
+            {% endif %}
+        </div>
+
+        <!-- Bereich für Flash-Meldungen (z.B. Erfolg, Fehler) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="hinweis-meldung hinweis-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </main>
+</body>
+</html>

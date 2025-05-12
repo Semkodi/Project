@@ -1,0 +1,286 @@
+/* =======================
+   Allgemeine Einstellungen
+   ======================= */
+body {
+    min-height: 100vh;
+    margin: 0;
+    background-image: url("/static/background.jpg");
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(2px) saturate(150%) contrast(80%) brightness(120%);
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    /* Kein flex auf body, damit main das Zentrieren übernimmt */
+}
+
+/* =======================
+   Header (oben auf der Seite)
+   ======================= */
+header {
+    width: 100vw;
+    min-height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px 10px 60px;
+    box-sizing: border-box;
+    background: rgba(40, 40, 40, 0.60); /* Glassmorphism-Effekt */
+    border-bottom: 2px solid #3498db55;
+    box-shadow: 0 4px 24px rgba(52,152,219,0.10);
+    backdrop-filter: blur(7px) saturate(130%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* Muster-Linie als Hintergrund */
+    background-image: repeating-linear-gradient(135deg, #3498db22 0 10px, transparent 10px 20px);
+}
+
+/* Begrüßungstext im Header */
+.begruessung, .greeting {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 2px 8px #2980b955;
+}
+
+/* Abmelden-Button im Header */
+.logout a {
+    color: #fff;
+    background: #3498db;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px #2980b944;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+/* Abmelden-Button leuchtet rot beim Hover/Fokus/Klick */
+.logout a:hover, .logout a:focus, .logout a:active {
+    background: #c0392b;
+    box-shadow:
+        0 0 12px 4px #ff5a5a,
+        0 4px 16px #c0392b99;
+    color: #fff;
+    outline: none;
+}
+
+/* =======================
+   Hauptbereich (alles unter dem Header)
+   ======================= */
+main {
+    width: 100vw;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Zentriert den Inhalt horizontal */
+    justify-content: flex-start; /* Oder center für vertikal */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* =======================
+   Formular zum Hinzufügen/Bearbeiten von Aufgaben
+   ======================= */
+.todo-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: rgba(65, 65, 65, 0.6);
+    backdrop-filter: blur(7px) saturate(130%);
+    padding: 30px;
+    border-radius: 12px;
+    color: #fff;
+    border: 1.5px solid #3498db55;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 900px;
+    justify-content: center;    /* Zentriert die Inputs im Formular */
+    box-sizing: border-box;
+}
+
+/* Eingabefelder und Dropdowns im Formular */
+.todo-form .glass-input,
+.todo-form select,
+.todo-form input[type="date"] {
+    flex: 1 1 180px;
+    min-width: 120px;
+    max-width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    outline: none;
+    background: rgba(57, 57, 57, 0.85);
+    color: #fff;
+    border-radius: 5px;
+    appearance: none;
+}
+
+/* Dunkle Dropdowns und Optionen */
+select.glass-input, .todo-form select {
+    background: rgba(57, 57, 57, 0.85);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    appearance: none;
+}
+select.glass-input option,
+.todo-form select option {
+    background: rgba(57, 57, 57, 0.95);
+    color: #fff;
+}
+
+/* Optional: schönerer Fokus für Dropdown */
+select.glass-input:focus, .todo-form select:focus {
+    outline: 2px solid #3498db;
+}
+
+/* Button im Formular (z.B. "Hinzufügen") */
+.todo-form button {
+    min-width: 120px;
+    padding: 10px;
+    background: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;               /* Immer weiße Schrift */
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+}
+.todo-form button:hover {
+    background: #2980b9;
+}
+
+/* =======================
+   Aufgabenliste (To-Do-Karten)
+   ======================= */
+.todo-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;   /* Zentriert die Karten */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+}
+
+/* Einzelne To-Do-Karte im Glassmorphism-Stil */
+.todo-card {
+    background: rgba(57, 57, 57, 0.55);
+    backdrop-filter: blur(7px) saturate(130%);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(52,152,219,0.12);
+    padding: 22px 28px;
+    min-width: 250px;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1.5px solid #3498db55;
+    margin: 8px;
+    color: #fff;
+    position: relative;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+/* Leuchtender Rahmen beim Hover */
+.todo-card:hover {
+    box-shadow:
+        0 8px 32px #3498db99,
+        0 0 24px 6px #00eaffcc,
+        0 0 40px 10px #00eaff55;
+    border: 2.5px solid #00eaff;
+}
+
+/* Kopfbereich der Karte (Titel + Löschen) */
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+/* Titel der Aufgabe */
+.todo-title {
+    font-size: 1.17em;
+    font-weight: bold;
+    word-break: break-word;
+    color: #fff;
+    text-shadow: 0 2px 8px #2980b955;
+}
+
+/* Löschen-Button */
+.delete-form {
+    margin: 0;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #08f169;
+    font-size: 3.3em;
+    cursor: pointer;
+    padding: 0 2px;
+    transition: color 0.2s;
+}
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+/* Details der Aufgabe */
+.todo-details {
+    font-size: 1em;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Aktionen (z.B. Bearbeiten-Button) */
+.todo-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-btn {
+    background: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.edit-btn:hover {
+    background: #27ae60;
+}
+
+/* Keine Aufgaben vorhanden */
+.no-todos {
+    color: #fff;
+    background: rgba(52, 152, 219, 0.7);
+    padding: 18px 30px;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+/* =======================
+   Flash-Meldungen (Hinweise)
+   ======================= */
+.hinweis-meldung {
+    margin: 16px auto;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: fit-content;
+    background: rgba(52,152,219,0.85);
+    color: #fff;
+    box-shadow: 0 2px 8px #2980b944;
+    text-align: center;
+}
+.hinweis-erfolg { background: rgba(46,204,113,0.85);}
+.hinweis-error { background: rgba(231,76,60,0.85);}
+.hinweis-info  { background: rgba(52,152,219,0.85);}

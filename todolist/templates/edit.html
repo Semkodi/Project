@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabe bearbeiten</title>
+    <!-- Einbindung des gleichen CSS wie bei der Übersicht -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+<body>
+    <header>
+        <!-- Überschrift im Header -->
+        <div class="begruessung">Aufgabe bearbeiten</div>
+        <!-- Abmelden-Button im Header -->
+        <div class="logout"><a href="{{ url_for('logout') }}">Abmelden</a></div>
+    </header>
+    <main>
+        <!-- Formular zum Bearbeiten der Aufgabe -->
+        <form action="" method="post" class="todo-form" style="max-width: 600px;">
+            <!-- Aufgabenbeschreibung -->
+            <input type="text" name="task" placeholder="Aufgabe/Beschreibung" value="{{ todo.task }}" required class="glass-input" />
+
+            <!-- Status-Auswahl -->
+            <select name="status" required class="glass-input">
+                <option value="offen" {% if todo.status == 'offen' %}selected{% endif %}>Offen</option>
+                <option value="in Bearbeitung" {% if todo.status == 'in Bearbeitung' %}selected{% endif %}>In Bearbeitung</option>
+                <option value="erledigt" {% if todo.status == 'erledigt' %}selected{% endif %}>Erledigt</option>
+                <option value="überfällig" {% if todo.status == 'überfällig' %}selected{% endif %}>Überfällig</option>
+            </select>
+
+            <!-- Fälligkeitsdatum -->
+            <input type="date" name="due_date" placeholder="Fälligkeitsdatum" value="{{ todo.due_date }}" class="glass-input" />
+
+            <!-- Priorität-Auswahl -->
+            <select name="priority" required class="glass-input">
+                <option value="hoch" {% if todo.priority == 'hoch' %}selected{% endif %}>Hoch</option>
+                <option value="mittel" {% if todo.priority == 'mittel' %}selected{% endif %}>Mittel</option>
+                <option value="niedrig" {% if todo.priority == 'niedrig' %}selected{% endif %}>Niedrig</option>
+            </select>
+
+            <!-- Kategorie -->
+            <input type="text" name="category" placeholder="Kategorie" value="{{ todo.category }}" class="glass-input" />
+            <!-- Verantwortlich -->
+            <input type="text" name="responsible" placeholder="Verantwortlich" value="{{ todo.responsible }}" class="glass-input" />
+            <!-- Notiz -->
+            <input type="text" name="note" placeholder="Notiz" value="{{ todo.note }}" class="glass-input" />
+
+            <!-- Speichern-Button -->
+            <button type="submit">Speichern</button>
+            <!-- Zurück zur Übersicht -->
+            <a href="{{ url_for('index') }}" class="glass-button" style="text-align:center; display:block; margin-top:10px;">Zurück zur Übersicht</a>
+        </form>
+    </main>
+</body>
+</html>

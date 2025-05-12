@@ -1,0 +1,46 @@
+[
+    {
+        "id": 2,
+        "username": "Semir",
+        "task": "was",
+        "status": "offen",
+        "due_date": "",
+        "priority": "hoch",
+        "note": "",
+        "responsible": "",
+        "category": ""
+    },
+    {
+        "id": 4,
+        "username": "Semir",
+        "task": "Es funktioniert",
+        "status": "offen",
+        "due_date": "",
+        "priority": "hoch",
+        "note": "",
+        "responsible": "",
+        "category": ""
+    },
+    {
+        "id": 5,
+        "username": "Semir",
+        "task": "was",
+        "status": "offen",
+        "due_date": "",
+        "priority": "hoch",
+        "note": "",
+        "responsible": "a",
+        "category": ""
+    },
+    {
+        "id": 7,
+        "username": "abc",
+        "task": "was",
+        "status": "offen",
+        "due_date": "",
+        "priority": "hoch",
+        "note": "",
+        "responsible": "",
+        "category": ""
+    }
+]

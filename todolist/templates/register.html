@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrieren</title>
+    <!-- Einbinden der CSS-Datei für das Registrierungs-Design -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+</head>
+<body>
+<!-- Registrierungs-Formular -->
+<form action="{{ url_for('register') }}" method="post">
+    <h1>Registrieren</h1>
+    
+    <!-- Eingabefeld für den Benutzernamen -->
+    <label for="username">Benutzername</label>
+    <input type="text" name="username" id="username" class="glass-input" required />
+    
+    <!-- Eingabefeld für das Passwort -->
+    <label for="password">Passwort</label>
+    <input type="password" name="password" id="password" class="glass-input" required />
+
+    <!-- Button zum Absenden des Formulars -->
+    <button class="glass-button" type="submit">Registrieren</button>
+    
+    <!-- Link zur Login-Seite, falls der Nutzer schon ein Konto hat -->
+    <p>
+        Schon ein Konto?
+        <a href="{{ url_for('login') }}" class="register-link">Zum Login</a>
+    </p>
+</form>
+</body>
+</html>
